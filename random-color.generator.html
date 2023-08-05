@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>random color generator</title>
+    <style>
+    
+    body{
+        margin: 0;
+        font-family: sans-serif;
+        background-color: black;
+      
+
+    }
+
+    h1{
+        text-align: center;
+        color: white;
+    }
+
+    .container{
+        display: flex;
+        flex-wrap:wrap;
+        justify-content: center;
+        
+     
+    }
+
+    .color-container{
+        
+        width: 500px;
+        height: 200px;
+        color: white;
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        border: 1px black;
+        border-radius: 10px;
+        
+    }
+
+
+    </style>
+</head>
+<body>
+    <h1>random color generator <br> refresh to new color </h1>
+    <div class="container">
+    </div>
+
+    <script>
+
+
+  const container = document.querySelector(".container");
+    
+
+
+    for (let index = 0; index < 30; index++) {
+        const div = document.createElement("div");
+        div.classList.add("color-container");
+        container.appendChild(div);
+    }
+    
+    let colorcontainer = document.querySelectorAll(".color-container");
+    
+    function randomcolor () {
+        let color = "";
+        let colorlength = 6;
+        let char = "1234567890abcdef";
+        for(let i = 0 ; i < colorlength ; i++){
+        let randomnum = Math.floor(Math.random() * char.length);
+         color += char.substring(randomnum , randomnum + 1);
+        }
+       return color
+       
+        
+        
+    }
+    randomcolor()
+
+    function colorgenerate () {
+        colorcontainer.forEach((colorcontainer) => {
+            let newcolor = randomcolor();
+            let background = "#" + newcolor;
+            console.log(background);
+            colorcontainer.style.backgroundColor = background;
+            colorcontainer.innerHTML = "#" + newcolor;
+        });
+    }
+  
+    colorgenerate()
+
+
+    </script>
+</body>
+</html>
